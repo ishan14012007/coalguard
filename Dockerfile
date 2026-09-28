@@ -7,6 +7,9 @@ WORKDIR /app/client
 COPY client/package*.json ./
 RUN npm ci
 COPY client/ ./
+
+ARG VITE_CARTO_API_KEY
+
 RUN npm run build
 
 # ==============================================================================
