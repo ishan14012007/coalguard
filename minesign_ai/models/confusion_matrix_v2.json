@@ -1,0 +1,68 @@
+{
+  "classes": [
+    "NO_GESTURE",
+    "PPE_DAMAGE",
+    "SUSPECTED_GAS_LEAK",
+    "CRACK_WORSENING",
+    "RESCUE_REQUIRED",
+    "HAZARD_HERE"
+  ],
+  "matrix": [
+    [
+      5,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      5,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      6,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      6,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      6,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      6
+    ]
+  ],
+  "labels": {
+    "0": "NO_GESTURE",
+    "1": "PPE_DAMAGE",
+    "2": "SUSPECTED_GAS_LEAK",
+    "3": "CRACK_WORSENING",
+    "4": "RESCUE_REQUIRED",
+    "5": "HAZARD_HERE"
+  }
+}

@@ -1,0 +1,33 @@
+{
+    "Metals": {
+        "precision": 0.8571428571428571,
+        "recall": 0.8823529411764706,
+        "f1-score": 0.8695652173913043,
+        "support": 34.0
+    },
+    "Mining": {
+        "precision": 0.875,
+        "recall": 0.875,
+        "f1-score": 0.875,
+        "support": 40.0
+    },
+    "Others": {
+        "precision": 1.0,
+        "recall": 0.9090909090909091,
+        "f1-score": 0.9523809523809523,
+        "support": 11.0
+    },
+    "accuracy": 0.8823529411764706,
+    "macro avg": {
+        "precision": 0.9107142857142857,
+        "recall": 0.8888146167557932,
+        "f1-score": 0.8989820565907521,
+        "support": 85.0
+    },
+    "weighted avg": {
+        "precision": 0.8840336134453781,
+        "recall": 0.8823529411764706,
+        "f1-score": 0.8828400925587626,
+        "support": 85.0
+    }
+}

@@ -1,0 +1,33 @@
+========================================
+       TRAINING REPORT
+========================================
+
+Date: 2026-09-19T23:42:03.729602
+Dataset Size: 425
+Model Type: Logistic Regression
+
+--- CATEGORY EVALUATION ---
+              precision    recall  f1-score   support
+
+      Metals       0.86      0.88      0.87        34
+      Mining       0.88      0.88      0.88        40
+      Others       1.00      0.91      0.95        11
+
+    accuracy                           0.88        85
+   macro avg       0.91      0.89      0.90        85
+weighted avg       0.88      0.88      0.88        85
+
+
+--- SEVERITY EVALUATION ---
+              precision    recall  f1-score   support
+
+           I       0.77      0.90      0.83        63
+          II       0.20      0.12      0.15         8
+         III       0.00      0.00      0.00         6
+          IV       0.00      0.00      0.00         6
+           V       0.00      0.00      0.00         2
+
+    accuracy                           0.68        85
+   macro avg       0.19      0.21      0.20        85
+weighted avg       0.59      0.68      0.63        85
+

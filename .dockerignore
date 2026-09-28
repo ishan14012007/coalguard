@@ -1,0 +1,16 @@
+.git
+.gitignore
+.DS_Store
+*.pyc
+__pycache__
+node_modules
+client/node_modules
+server/node_modules
+minesign_ai/.venv
+minesign_ai/__pycache__
+model 4/__pycache__
+model 5/__pycache__
+model 5/src/__pycache__
+people counter/people_exit_counter/__pycache__
+*.pdf
+scratch

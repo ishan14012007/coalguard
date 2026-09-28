@@ -1,0 +1,40 @@
+{
+  "model_name": "MineSign-Temporal-MLP",
+  "version": "1.0.0-SIH2026-W001",
+  "trained_at": "2026-09-26T10:53:03.933205",
+  "architecture": "MLPClassifier (128, 64, ReLU, Adam, alpha=0.01)",
+  "input_feature_dim": 2172,
+  "classes": [
+    "NO_GESTURE",
+    "PPE_DAMAGE",
+    "SUSPECTED_GAS_LEAK",
+    "CRACK_WORSENING",
+    "RESCUE_REQUIRED",
+    "HAZARD_HERE"
+  ],
+  "label_to_id": {
+    "NO_GESTURE": 0,
+    "PPE_DAMAGE": 1,
+    "SUSPECTED_GAS_LEAK": 2,
+    "CRACK_WORSENING": 3,
+    "RESCUE_REQUIRED": 4,
+    "HAZARD_HERE": 5
+  },
+  "id_to_label": {
+    "0": "NO_GESTURE",
+    "1": "PPE_DAMAGE",
+    "2": "SUSPECTED_GAS_LEAK",
+    "3": "CRACK_WORSENING",
+    "4": "RESCUE_REQUIRED",
+    "5": "HAZARD_HERE"
+  },
+  "training_metadata": {
+    "total_samples": 120,
+    "train_samples": 84,
+    "val_samples": 18,
+    "test_samples": 18,
+    "worker_id": "W001",
+    "evaluation_type": "Single-person evaluation (W001). W002 reserved for unseen-person evaluation.",
+    "random_seed": 42
+  }
+}

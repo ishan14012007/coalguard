@@ -1,0 +1,19 @@
+Data Quality Report
+===================
+Raw samples: 425
+Cleaned samples: 425
+Removed empty/null descriptions: 0
+
+Category Distribution:
+Category
+Mining    241
+Metals    134
+Others     50
+
+Severity Distribution:
+Severity
+I      316
+II      40
+III     31
+IV      30
+V        8

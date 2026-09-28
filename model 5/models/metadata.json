@@ -1,0 +1,29 @@
+{
+    "training_date": "2026-09-19T23:42:03.729602",
+    "dataset_samples": 425,
+    "model_type": "Logistic Regression (TF-IDF)",
+    "categories": [
+        "Metals",
+        "Mining",
+        "Others"
+    ],
+    "severities": [
+        "I",
+        "II",
+        "III",
+        "IV",
+        "V"
+    ],
+    "evaluation": {
+        "category": {
+            "accuracy": 0.8823529411764706,
+            "macro_f1": 0.8989820565907521,
+            "weighted_f1": 0.8828400925587626
+        },
+        "severity": {
+            "accuracy": 0.6823529411764706,
+            "macro_f1": 0.19719258843346435,
+            "weighted_f1": 0.6312250222941507
+        }
+    }
+}

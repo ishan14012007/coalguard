@@ -1,0 +1,8 @@
+
+path: c:\Users\KSHITIJ\Desktop\helmet detection\helmet_detection\dataset
+train: images/train
+val: images/val
+test: images/test
+
+nc: 3
+names: ['good_helmet', 'damaged_helmet', 'no_helmet']

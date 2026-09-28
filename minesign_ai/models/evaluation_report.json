@@ -1,0 +1,105 @@
+{
+  "evaluation_type": "Single-person evaluation (W001). W002 reserved for unseen-person evaluation.",
+  "test_accuracy": 1.0,
+  "validation_accuracy": 1.0,
+  "training_accuracy": 1.0,
+  "cv_5fold_mean_accuracy": 0.9705,
+  "cv_5fold_std": 0.0398,
+  "per_class_metrics": {
+    "NO_GESTURE": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "support": 3
+    },
+    "PPE_DAMAGE": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "support": 3
+    },
+    "SUSPECTED_GAS_LEAK": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "support": 3
+    },
+    "CRACK_WORSENING": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "support": 3
+    },
+    "RESCUE_REQUIRED": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "support": 3
+    },
+    "HAZARD_HERE": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "support": 3
+    }
+  },
+  "confusion_matrix": [
+    [
+      3,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      3,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      3,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      3,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      3,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      3
+    ]
+  ],
+  "confused_pairs": [],
+  "classes": [
+    "NO_GESTURE",
+    "PPE_DAMAGE",
+    "SUSPECTED_GAS_LEAK",
+    "CRACK_WORSENING",
+    "RESCUE_REQUIRED",
+    "HAZARD_HERE"
+  ]
+}

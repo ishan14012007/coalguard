@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+*/node_modules/
+.venv/
+*/.venv/
+__pycache__/
+*/__pycache__/
+*.pyc
+
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+*.local
+
+# OS & Temp
+.DS_Store
+*/.DS_Store
+Thumbs.db
+*.part
+*.tmp
+
+# Build outputs
+dist/
+dist-ssr/
+build/
+
+# Large ML model weights
+helmet_detection/weights/clip/ViT-B-32.pt
+helmet_detection/helmet_detection/inference/weights/clip/ViT-B-32.pt
+
+# Large AI model weights
+**/weights/
+*.pt

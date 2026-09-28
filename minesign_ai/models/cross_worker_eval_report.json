@@ -1,0 +1,188 @@
+{
+  "W001_to_W002": {
+    "train_worker": "W001",
+    "test_worker": "W002",
+    "accuracy": 0.7917,
+    "per_class_metrics": {
+      "NO_GESTURE": {
+        "precision": 0.6111,
+        "recall": 0.55,
+        "f1_score": 0.5789,
+        "support": 20
+      },
+      "PPE_DAMAGE": {
+        "precision": 0.9375,
+        "recall": 0.75,
+        "f1_score": 0.8333,
+        "support": 20
+      },
+      "SUSPECTED_GAS_LEAK": {
+        "precision": 0.5556,
+        "recall": 0.75,
+        "f1_score": 0.6383,
+        "support": 20
+      },
+      "CRACK_WORSENING": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1_score": 0.8571,
+        "support": 20
+      },
+      "RESCUE_REQUIRED": {
+        "precision": 1.0,
+        "recall": 0.95,
+        "f1_score": 0.9744,
+        "support": 20
+      },
+      "HAZARD_HERE": {
+        "precision": 0.8,
+        "recall": 1.0,
+        "f1_score": 0.8889,
+        "support": 20
+      }
+    },
+    "confusion_matrix": [
+      [
+        11,
+        1,
+        7,
+        0,
+        0,
+        1
+      ],
+      [
+        2,
+        15,
+        3,
+        0,
+        0,
+        0
+      ],
+      [
+        5,
+        0,
+        15,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        2,
+        15,
+        0,
+        3
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        19,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        20
+      ]
+    ]
+  },
+  "W002_to_W001": {
+    "train_worker": "W002",
+    "test_worker": "W001",
+    "accuracy": 0.8417,
+    "per_class_metrics": {
+      "NO_GESTURE": {
+        "precision": 0.6087,
+        "recall": 0.7,
+        "f1_score": 0.6512,
+        "support": 20
+      },
+      "PPE_DAMAGE": {
+        "precision": 0.9474,
+        "recall": 0.9,
+        "f1_score": 0.9231,
+        "support": 20
+      },
+      "SUSPECTED_GAS_LEAK": {
+        "precision": 0.5625,
+        "recall": 0.45,
+        "f1_score": 0.5,
+        "support": 20
+      },
+      "CRACK_WORSENING": {
+        "precision": 0.9524,
+        "recall": 1.0,
+        "f1_score": 0.9756,
+        "support": 20
+      },
+      "RESCUE_REQUIRED": {
+        "precision": 0.9524,
+        "recall": 1.0,
+        "f1_score": 0.9756,
+        "support": 20
+      },
+      "HAZARD_HERE": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "support": 20
+      }
+    },
+    "confusion_matrix": [
+      [
+        14,
+        0,
+        6,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        18,
+        1,
+        0,
+        1,
+        0
+      ],
+      [
+        9,
+        1,
+        9,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        20,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        20,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        20
+      ]
+    ]
+  }
+}

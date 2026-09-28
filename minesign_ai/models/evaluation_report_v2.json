@@ -1,0 +1,116 @@
+{
+  "evaluation_notice": "Two-person prototype evaluation. Cross-worker results are more informative than random sequence splitting, but the dataset is still small and should not be interpreted as real coal-mine deployment accuracy.",
+  "test_accuracy": 0.9444,
+  "validation_accuracy": 0.9722,
+  "training_accuracy": 0.9643,
+  "cv_5fold_mean_accuracy": 0.9559,
+  "cv_5fold_std": 0.0324,
+  "per_class_metrics": {
+    "NO_GESTURE": {
+      "precision": 1.0,
+      "recall": 0.8333,
+      "f1_score": 0.9091,
+      "support": 6
+    },
+    "PPE_DAMAGE": {
+      "precision": 1.0,
+      "recall": 0.8333,
+      "f1_score": 0.9091,
+      "support": 6
+    },
+    "SUSPECTED_GAS_LEAK": {
+      "precision": 0.75,
+      "recall": 1.0,
+      "f1_score": 0.8571,
+      "support": 6
+    },
+    "CRACK_WORSENING": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "support": 6
+    },
+    "RESCUE_REQUIRED": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "support": 6
+    },
+    "HAZARD_HERE": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "support": 6
+    }
+  },
+  "confusion_matrix": [
+    [
+      5,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      5,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      6,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      6,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      6,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      6
+    ]
+  ],
+  "no_gesture_cross_talk": {
+    "NO_GESTURE -> PPE_DAMAGE": 0,
+    "PPE_DAMAGE -> NO_GESTURE": 0,
+    "NO_GESTURE -> SUSPECTED_GAS_LEAK": 1,
+    "SUSPECTED_GAS_LEAK -> NO_GESTURE": 0,
+    "NO_GESTURE -> CRACK_WORSENING": 0,
+    "CRACK_WORSENING -> NO_GESTURE": 0,
+    "NO_GESTURE -> RESCUE_REQUIRED": 0,
+    "RESCUE_REQUIRED -> NO_GESTURE": 0,
+    "NO_GESTURE -> HAZARD_HERE": 0,
+    "HAZARD_HERE -> NO_GESTURE": 0
+  },
+  "classes": [
+    "NO_GESTURE",
+    "PPE_DAMAGE",
+    "SUSPECTED_GAS_LEAK",
+    "CRACK_WORSENING",
+    "RESCUE_REQUIRED",
+    "HAZARD_HERE"
+  ]
+}
