@@ -14,3 +14,10 @@ model 5/src/__pycache__
 people counter/people_exit_counter/__pycache__
 *.pdf
 scratch
+
+# Exclude large raw source videos from Docker build context
+helmet detection/*.mp4
+SMOKE DETECTION/*.mp4
+people counter/people_exit_counter/videos
+*.mp4
+!client/public/videos/*.mp4

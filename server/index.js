@@ -50,9 +50,23 @@ app.use(cors({
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// Serve compiled client static assets if available
+// Serve compiled client static assets if available with optimized cache policies
 if (hasClientDist) {
-  app.use(express.static(clientDistPath));
+  app.use(express.static(clientDistPath, {
+    maxAge: '1d',
+    setHeaders: (res, filePath) => {
+      if (filePath.endsWith('.mp4')) {
+        // Long-lived caching for static demo videos with range request support
+        res.setHeader('Cache-Control', 'public, max-age=604800, immutable');
+      } else if (filePath.includes('/assets/') && (filePath.endsWith('.js') || filePath.endsWith('.css'))) {
+        // Long-lived immutable caching for hashed Vite build bundles
+        res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+      } else if (filePath.endsWith('.html')) {
+        // Prevent aggressive caching on entry HTML to allow immediate update rollouts
+        res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+      }
+    }
+  }));
 }
 
 // Health Check

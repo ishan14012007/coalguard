@@ -353,6 +353,7 @@ export default function CCTVSurveillanceView({ token, onNavigateToViolations }) 
                 ref={videoRef}
                 key={activeFeed?.video_url}
                 src={activeFeed?.video_url || '/videos/people_counter_demo.mp4'}
+                preload="metadata"
                 autoPlay
                 loop
                 muted
