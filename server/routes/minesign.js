@@ -1,39 +1,35 @@
 import express from 'express';
 import path from 'path';
 import fs from 'fs';
-import { spawn } from 'child_process';
 import { fileURLToPath } from 'url';
 import { mockStore, appendAuditLog } from '../db/mockStore.js';
 
 const router = express.Router();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const localVenv = path.join(__dirname, '../../minesign_ai/.venv/bin/python3');
-const PYTHON_PATH = process.env.PYTHON_BIN || (fs.existsSync(localVenv) ? localVenv : 'python3');
-const INFERENCE_SCRIPT = path.join(__dirname, '../../minesign_ai/inference_server.py');
+let isMineSignReady = false;
 
-let pythonInferenceProcess = null;
-
-export function ensureInferenceServer() {
-  fetch('http://127.0.0.1:5005/health')
-    .then(r => r.json())
-    .catch(() => {
-      try {
-        console.log('🚀 Spawning MineSign AI Python Inference Service on port 5005...');
-        pythonInferenceProcess = spawn(PYTHON_PATH, [INFERENCE_SCRIPT], {
-          cwd: path.join(__dirname, '../../minesign_ai'),
-          env: { ...process.env, PYTHONUNBUFFERED: '1' }
-        });
-        pythonInferenceProcess.stdout?.on('data', d => console.log(`[MineSign AI] ${d.toString().trim()}`));
-        pythonInferenceProcess.stderr?.on('data', d => console.error(`[MineSign AI] ${d.toString().trim()}`));
-      } catch (e) {
-        console.warn('Could not spawn Python inference server:', e);
+export async function checkMineSignHealth() {
+  try {
+    const r = await fetch('http://127.0.0.1:5005/health');
+    if (r.ok) {
+      if (!isMineSignReady) {
+        console.log('✅ MineSign AI Python Inference Service is online on port 5005.');
       }
-    });
+      isMineSignReady = true;
+      return true;
+    }
+  } catch (e) {
+    isMineSignReady = false;
+  }
+  return false;
 }
 
-// Initial start attempt
+export function ensureInferenceServer() {
+  // start.sh is the single process owner. We only check readiness.
+  checkMineSignHealth();
+}
+
+// Initial readiness probe
 ensureInferenceServer();
 
 // Initialize isolated MineSign store if not present
@@ -591,10 +587,9 @@ router.post('/process-frame', async (req, res) => {
     const telemetry = await pyRes.json();
     return res.json(telemetry);
   } catch (err) {
-    ensureInferenceServer();
     return res.status(503).json({
-      error: 'MineSign AI Starting',
-      message: 'Inference service is starting up on port 5005. Please retry.',
+      error: 'MineSign AI Initializing',
+      message: 'MineSign Python inference service is initializing on port 5005. Please retry shortly.',
       details: err.message
     });
   }
