@@ -26,15 +26,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get install -y --no-install-recommends nodejs \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Python ML dependencies across all models
-COPY minesign_ai/requirements.txt /tmp/minesign_req.txt
-COPY model\ 4/requirements.txt /tmp/model_4_req.txt
-COPY model\ 5/requirements.txt /tmp/model_5_req.txt
+# Install Python ML dependencies across models (MineSign AI & Model 4)
+COPY ["minesign_ai/requirements.txt", "/tmp/minesign_req.txt"]
+COPY ["model 4/requirements.txt", "/tmp/model_4_req.txt"]
 
 RUN pip install --no-cache-dir \
     -r /tmp/minesign_req.txt \
     -r /tmp/model_4_req.txt \
-    -r /tmp/model_5_req.txt \
     && rm -f /tmp/*_req.txt
 
 # Install Server Dependencies
@@ -45,11 +43,10 @@ RUN npm ci --omit=dev
 # Copy Server Source Code
 COPY server/ /app/server/
 
-# Copy Python AI Modules & Trained Weights
+# Copy Python AI Modules & Data Assets
 COPY minesign_ai/ /app/minesign_ai/
-COPY model\ 4/ /app/model\ 4/
-COPY model\ 5/ /app/model\ 5/
-COPY model\ 6/ /app/model\ 6/
+COPY ["model 4/", "/app/model 4/"]
+COPY ["model 6/", "/app/model 6/"]
 
 # Copy Compiled React Client from Stage 1
 COPY --from=client-builder /app/client/dist /app/client/dist
