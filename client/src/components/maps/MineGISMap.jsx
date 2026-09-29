@@ -355,8 +355,8 @@ export default function MineGISMap({
     <div className="relative rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 shadow-xl" style={{ height }}>
       
       {/* 1. GIS FLOATING CONTROL BAR */}
-      <div className="absolute top-3 left-3 z-[1000] flex flex-wrap items-center gap-2 bg-slate-900/90 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-700 shadow-xl text-xs">
-        <Layers className="w-3.5 h-3.5 text-sky-400" />
+      <div className="absolute top-3 left-3 z-[1000] flex flex-wrap items-center gap-1.5 sm:gap-2 bg-slate-900/90 backdrop-blur-md px-2.5 sm:px-3 py-1.5 rounded-xl border border-slate-700 shadow-xl text-[11px] sm:text-xs max-w-[calc(100%-24px)]">
+        <Layers className="w-3.5 h-3.5 text-sky-400 shrink-0" />
         <span className="font-semibold text-white">GIS Layers:</span>
         <button
           onClick={() => setActiveLayer('all')}
@@ -387,7 +387,7 @@ export default function MineGISMap({
 
       {/* 2. ACTIVE FOCUSED INCIDENT NOTIFICATION CHIP (When navigated from notification) */}
       {focusIncident && (
-        <div className="absolute top-14 left-3 z-[1000] bg-[#1E1B16]/95 backdrop-blur-md border border-[#EAB308]/60 text-white p-2.5 rounded-xl shadow-2xl text-xs max-w-sm flex items-center justify-between gap-3 animate-fadeIn">
+        <div className="absolute top-14 left-3 z-[1000] bg-[#1E1B16]/95 backdrop-blur-md border border-[#EAB308]/60 text-white p-2.5 rounded-xl shadow-2xl text-xs max-w-[calc(100%-24px)] sm:max-w-sm flex items-center justify-between gap-3 animate-fadeIn">
           <div className="flex items-center gap-2">
             <span className="p-1 rounded-lg bg-[#EAB308]/20 text-[#EAB308]">
               <Radio className="w-4 h-4 animate-pulse" />

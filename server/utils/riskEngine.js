@@ -171,15 +171,16 @@ export function simulateWhatIfRisk(params = {}) {
   const monsoonFactor = Number(params.monsoon_factor) || 1.0;
 
   // Calculate base risk from Model 4 situational engine
+  const isContinuous = equipmentType.includes('Continuous') || (baseActivity.includes('Continuous') && !equipmentType.includes('Belt') && !equipmentType.includes('Longwall'));
   const m4Input = {
-    AI_ACTY_DESC: baseActivity.includes('Continuous') ? 'Continuous miner' : 'Handling supplies or material',
-    MINING_EQUIP: equipmentType.includes('Continuous') ? 'Continuous miner, Tunnel borer, Road header' : 'Conveyor, Belt feeder, Stage loader, Hopper shaker, Belt structure',
-    UG_LOCATION: baseActivity.includes('Continuous') ? 'FACE' : 'INTERSECTION',
+    AI_ACTY_DESC: isContinuous ? 'Continuous miner' : 'Handling supplies or material',
+    MINING_EQUIP: isContinuous ? 'Continuous miner, Tunnel borer, Road header' : 'Conveyor, Belt feeder, Stage loader, Hopper shaker, Belt structure',
+    UG_LOCATION: isContinuous ? 'FACE' : 'INTERSECTION',
     COAL_METAL_IND: 'C',
-    EXPER_TOT_CALC: experienceRatio > 75 ? '>10 Years' : (experienceRatio > 40 ? '1-5 Years' : '<1 Year'),
+    EXPER_TOT_CALC: experienceRatio > 75 ? '>10 Years' : (experienceRatio > 40 ? '5-10 Years' : '<1 Year'),
     ACCIDENT_TIME: shiftTime,
     UG_MINING_METHOD: 'Continuous Mining',
-    AI_CLASS_DESC: 'FALL OF FACE/RIB/PILLAR/SIDE/HIGHWALL'
+    AI_CLASS_DESC: isContinuous ? 'FALL OF FACE/RIB/PILLAR/SIDE/HIGHWALL' : 'HANDLING OF MATERIALS'
   };
 
   const baseRes = predictSituationalRisk(m4Input);

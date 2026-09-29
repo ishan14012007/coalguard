@@ -3,11 +3,11 @@ import { ChevronRight, Home, ArrowLeft } from 'lucide-react';
 
 export default function GovBreadcrumbs({ items = [], onBack, onHome, showNavControls = false }) {
   return (
-    <div className="bg-white border-b border-[#e2e8f0] px-4 lg:px-8 py-2 text-xs text-[#64748b] flex items-center justify-between gap-3 overflow-x-auto shadow-2xs">
+    <div className="bg-white border-b border-[#e2e8f0] px-2 sm:px-4 lg:px-8 py-1.5 sm:py-2 text-[11px] sm:text-xs text-[#64748b] flex items-center justify-between gap-2 sm:gap-3 overflow-x-auto no-scrollbar shadow-2xs whitespace-nowrap">
       <div className="flex items-center gap-1.5 min-w-0">
         <button 
           onClick={onHome} 
-          className="flex items-center gap-1 text-[#0f2942] font-semibold hover:text-[#213d77] transition shrink-0"
+          className="flex items-center gap-1 text-[#0f2942] font-semibold hover:text-[#213d77] transition shrink-0 cursor-pointer"
           title="Return to Portal Home"
         >
           <Home className="w-3.5 h-3.5 text-[#213d77]" />
@@ -38,25 +38,25 @@ export default function GovBreadcrumbs({ items = [], onBack, onHome, showNavCont
       </div>
 
       {showNavControls && (
-        <div className="flex items-center gap-2 shrink-0">
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           {onBack && (
             <button
               onClick={onBack}
-              className="flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#f1f5f9] hover:bg-[#e2e8f0] text-[#1e293b] font-bold text-[11px] border border-slate-300 transition shadow-2xs cursor-pointer"
+              className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-0.5 sm:py-1 rounded-md bg-[#f1f5f9] hover:bg-[#e2e8f0] text-[#1e293b] font-bold text-[10px] sm:text-[11px] border border-slate-300 transition shadow-2xs cursor-pointer"
               title="Return to previous section"
             >
-              <ArrowLeft className="w-3.5 h-3.5 text-slate-700" />
-              <span>Go Back</span>
+              <ArrowLeft className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-slate-700" />
+              <span>Back</span>
             </button>
           )}
           {onHome && (
             <button
               onClick={onHome}
-              className="flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#213d77] hover:bg-[#162d5a] text-white font-bold text-[11px] transition shadow-2xs cursor-pointer"
+              className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-0.5 sm:py-1 rounded-md bg-[#213d77] hover:bg-[#162d5a] text-white font-bold text-[10px] sm:text-[11px] transition shadow-2xs cursor-pointer"
               title="Return to Portal Home Dashboard"
             >
-              <Home className="w-3.5 h-3.5" />
-              <span>Go Home</span>
+              <Home className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+              <span>Home</span>
             </button>
           )}
         </div>

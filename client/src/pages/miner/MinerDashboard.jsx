@@ -347,7 +347,7 @@ export default function MinerDashboard() {
       />
 
       {/* 4. MAIN CONTENT */}
-      <main className="flex-1 max-w-5xl mx-auto w-full p-4 lg:p-6 space-y-6">
+      <main className="flex-1 max-w-5xl mx-auto w-full p-3 sm:p-4 lg:p-6 space-y-4 sm:space-y-6">
         
         {/* Worker Summary Strip */}
         <div className="gov-panel p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
@@ -795,8 +795,8 @@ export default function MinerDashboard() {
 
             {/* Manual Safety Report Modal */}
             {isManualReportOpen && (
-              <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-                <div className="bg-white border border-[#213d77] rounded-xs max-w-md w-full p-5 space-y-4 shadow-xl">
+              <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+                <div className="bg-white border border-[#213d77] rounded-xs max-w-md w-full max-h-[90vh] overflow-y-auto p-4 sm:p-5 space-y-4 shadow-xl">
                   <div className="flex items-center justify-between border-b pb-2">
                     <span className="font-bold text-xs uppercase text-[#0f2942]">Create Field Safety Report (Zone 4)</span>
                     <button onClick={() => setIsManualReportOpen(false)} className="text-slate-400 hover:text-black">&times;</button>
@@ -1016,8 +1016,8 @@ export default function MinerDashboard() {
               <span>WORKER STATUTORY PROFILE</span>
               <span className="text-[11px] font-mono">DGMS COMPLIANT</span>
             </div>
-            <div className="p-5 space-y-4 text-xs">
-              <div className="grid grid-cols-2 gap-4 border-b border-slate-200 pb-4">
+            <div className="p-4 sm:p-5 space-y-4 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 border-b border-slate-200 pb-4">
                 <div>
                   <span className="text-slate-500 block">Full Name</span>
                   <strong className="text-[#0f2942] text-sm">{user?.full_name}</strong>

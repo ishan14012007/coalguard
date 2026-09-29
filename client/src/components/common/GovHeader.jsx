@@ -26,7 +26,8 @@ import {
   Flame,
   FileSpreadsheet,
   PhoneCall,
-  MapPin
+  MapPin,
+  X
 } from 'lucide-react';
 import { CoalGuardEmblem, MiningHelmetIcon } from './MiningIcons';
 
@@ -136,11 +137,11 @@ export default function GovHeader({ activeTab, onSelectTab, customNavItems, sect
     <header className="w-full bg-white border-b border-[#d1d5db] select-none text-[13px]">
       
       {/* 1. TOP STATUTORY META BAR (IRCTC Aesthetic) */}
-      <div className="bg-[#f8fafc] border-b border-[#e2e8f0] px-4 lg:px-8 py-1.5 flex flex-wrap items-center justify-between gap-3 text-xs text-[#475569]">
+      <div className="bg-[#f8fafc] border-b border-[#e2e8f0] px-2 sm:px-4 lg:px-8 py-1.5 flex flex-wrap items-center justify-between gap-2 text-[11px] sm:text-xs text-[#475569]">
         
         {/* Left: Indian Emblem & Gov Ministry Reference */}
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+          <div className="flex items-center gap-1.5 flex-wrap">
             <span className="font-bold text-[#0f2942] uppercase tracking-wide">
               GOVERNMENT OF INDIA
             </span>
@@ -155,7 +156,7 @@ export default function GovHeader({ activeTab, onSelectTab, customNavItems, sect
         </div>
 
         {/* Right: Date/Time Clock + Font Resizers + Language Switcher */}
-        <div className="flex items-center gap-4 text-xs">
+        <div className="flex items-center gap-2 sm:gap-4 text-xs">
           
           {/* Real-time Clock */}
           <div className="font-mono text-[11px] font-semibold text-[#1e293b] hidden md:block">
@@ -203,36 +204,36 @@ export default function GovHeader({ activeTab, onSelectTab, customNavItems, sect
       </div>
 
       {/* 2. MAIN BRANDING BANNER */}
-      <div className="px-4 lg:px-8 py-3 bg-white flex flex-wrap items-center justify-between gap-4">
+      <div className="px-2 sm:px-4 lg:px-8 py-2.5 sm:py-3 bg-white flex flex-wrap items-center justify-between gap-2.5 sm:gap-4">
         
         {/* Logo & Portal Identity */}
-        <div className="flex items-center gap-3">
-          <div className="p-1.5 bg-[#0f2942] text-white rounded-xs border border-[#091a2b] shadow-xs">
-            <CoalGuardEmblem className="w-8 h-8 text-white" />
+        <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+          <div className="p-1 sm:p-1.5 bg-[#0f2942] text-white rounded-xs border border-[#091a2b] shadow-xs shrink-0">
+            <CoalGuardEmblem className="w-7 h-7 sm:w-8 sm:h-8 text-white" />
           </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <h1 className="text-lg lg:text-xl font-black text-[#0f2942] tracking-tight leading-tight uppercase font-sans">
+          <div className="min-w-0">
+            <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+              <h1 className="text-base sm:text-lg lg:text-xl font-black text-[#0f2942] tracking-tight leading-tight uppercase font-sans">
                 CoalGuard
               </h1>
-              <span className="text-[11px] px-2 py-0.5 bg-[#213d77] text-white font-bold rounded-xs tracking-wider uppercase">
+              <span className="text-[10px] sm:text-[11px] px-1.5 sm:px-2 py-0.5 bg-[#213d77] text-white font-bold rounded-xs tracking-wider uppercase truncate">
                 {getRoleTitle()}
               </span>
             </div>
-            <p className="text-[11px] text-[#475569] font-medium leading-none mt-0.5">
+            <p className="text-[10px] sm:text-[11px] text-[#475569] font-medium leading-tight mt-0.5 line-clamp-1 sm:line-clamp-none">
               Smart Governance & Statutory Compliance Platform • Demo Mine A (Zone 4)
             </p>
           </div>
         </div>
 
         {/* User Context & Action Buttons */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3 ml-auto sm:ml-0 shrink-0">
           
           {/* Location-Aware Notification Bell Button */}
           <div className="relative">
             <button
               onClick={() => setShowNotifDrawer(!showNotifDrawer)}
-              className="relative p-2 rounded-xl bg-[#f8fafc] hover:bg-[#e2e8f0] text-[#0f2942] border border-[#cbd5e1] transition shadow-xs cursor-pointer"
+              className="relative p-1.5 sm:p-2 rounded-xl bg-[#f8fafc] hover:bg-[#e2e8f0] text-[#0f2942] border border-[#cbd5e1] transition shadow-xs cursor-pointer"
               title="Statutory Alerts & Incident Notifications"
             >
               <Bell className="w-4 h-4 text-[#0f2942]" />
@@ -243,20 +244,36 @@ export default function GovHeader({ activeTab, onSelectTab, customNavItems, sect
               )}
             </button>
 
-            {/* Dropdown Drawer */}
+            {/* Dropdown Drawer (Mobile Viewport-Safe Fixed Coordinates vs Desktop Dropdown) */}
             {showNotifDrawer && (
-              <div className="absolute right-0 mt-2 w-80 sm:w-96 bg-white border border-[#cbd5e1] rounded-2xl shadow-2xl z-50 p-4 overflow-hidden animate-fadeIn">
-                <div className="flex items-center justify-between pb-2.5 border-b border-[#e2e8f0] mb-2.5">
-                  <h4 className="text-xs font-bold text-[#0f2942] uppercase tracking-wider flex items-center gap-1.5 font-heading">
-                    <AlertTriangle className="w-3.5 h-3.5 text-[#fb792b]" />
-                    Incident & Statutory Alerts
-                  </h4>
-                  <span className="text-[10px] text-slate-500 font-mono">
-                    {notifications?.length || 0} active
-                  </span>
-                </div>
+              <>
+                {/* Backdrop on mobile for one-tap dismiss */}
+                <div 
+                  className="fixed inset-0 z-40 bg-black/20 backdrop-blur-2xs sm:hidden" 
+                  onClick={() => setShowNotifDrawer(false)}
+                />
 
-                <div className="max-h-80 overflow-y-auto space-y-2.5 pr-1">
+                <div className="fixed left-3 right-3 top-20 sm:top-auto sm:left-auto sm:right-0 sm:mt-2 sm:absolute sm:w-96 bg-white border border-[#cbd5e1] rounded-2xl shadow-2xl z-50 p-3 sm:p-4 overflow-hidden animate-fadeIn">
+                  <div className="flex items-center justify-between pb-2.5 border-b border-[#e2e8f0] mb-2.5">
+                    <h4 className="text-xs font-bold text-[#0f2942] uppercase tracking-wider flex items-center gap-1.5 font-heading">
+                      <AlertTriangle className="w-3.5 h-3.5 text-[#fb792b]" />
+                      Incident & Statutory Alerts
+                    </h4>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] text-slate-500 font-mono">
+                        {notifications?.length || 0} active
+                      </span>
+                      <button 
+                        onClick={() => setShowNotifDrawer(false)}
+                        className="p-1 rounded-lg text-slate-400 hover:text-[#0f2942] hover:bg-slate-100 transition sm:hidden cursor-pointer"
+                        title="Close notifications"
+                      >
+                        <X className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="max-h-[calc(100vh-180px)] sm:max-h-80 overflow-y-auto space-y-2.5 pr-1">
                   {(!notifications || notifications.length === 0) ? (
                     <p className="text-xs text-slate-400 py-4 text-center">No active statutory alerts</p>
                   ) : (
@@ -321,7 +338,8 @@ export default function GovHeader({ activeTab, onSelectTab, customNavItems, sect
                   )}
                 </div>
               </div>
-            )}
+            </>
+          )}
           </div>
 
           {user && (
@@ -335,18 +353,18 @@ export default function GovHeader({ activeTab, onSelectTab, customNavItems, sect
 
           <button
             onClick={logout}
-            className="btn-gov-outline text-xs flex items-center gap-1.5 py-1.5 px-3 cursor-pointer"
+            className="btn-gov-outline text-xs flex items-center gap-1.5 py-1.5 px-2.5 sm:px-3 cursor-pointer shrink-0"
             title="Sign out of government portal"
           >
             <LogOut className="w-3.5 h-3.5 text-[#dc2626]" />
-            <span>Logout</span>
+            <span className="hidden xs:inline sm:inline">Logout</span>
           </button>
         </div>
       </div>
 
       {/* 3. DARK NAVY BLUE NAVIGATION BAR (IRCTC Style) */}
-      <nav className="bg-[#0f2942] text-white px-2 lg:px-8 shadow-sm">
-        <div className="flex items-center overflow-x-auto no-scrollbar scroll-smooth">
+      <nav className="bg-[#0f2942] text-white px-1 sm:px-2 lg:px-8 shadow-sm">
+        <div className="flex items-center overflow-x-auto no-scrollbar scroll-smooth whitespace-nowrap">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
@@ -354,7 +372,7 @@ export default function GovHeader({ activeTab, onSelectTab, customNavItems, sect
               <button
                 key={item.id}
                 onClick={() => onSelectTab(item.id)}
-                className={`flex items-center gap-1.5 px-3.5 py-2.5 text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-colors relative border-b-3 cursor-pointer ${
+                className={`flex items-center gap-1.5 px-3 sm:px-3.5 py-2 sm:py-2.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-colors relative border-b-3 cursor-pointer shrink-0 ${
                   isActive 
                     ? 'bg-[#1b4369] text-white border-[#fb792b]' 
                     : 'text-slate-200 hover:bg-[#153454] hover:text-white border-transparent'

@@ -495,10 +495,10 @@ export default function SupervisorDashboard() {
       />
 
       {/* 4. MAIN OPERATIONAL CONTAINER */}
-      <main className="flex-1 max-w-7xl mx-auto w-full p-4 lg:p-6 space-y-6">
+      <main className="flex-1 max-w-7xl mx-auto w-full p-3 sm:p-4 lg:p-6 space-y-4 sm:space-y-6">
         
         {/* SUPERVISOR CONTROL STRIP */}
-        <div className="gov-panel p-4 bg-white flex flex-wrap items-center justify-between gap-4">
+        <div className="gov-panel p-3.5 sm:p-4 bg-white flex flex-wrap items-center justify-between gap-4">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
               <span className="font-extrabold text-sm text-[#0f2942] uppercase font-sans">
@@ -934,8 +934,8 @@ export default function SupervisorDashboard() {
 
             {/* Escalate SOS Modal */}
             {escalateSosId && (
-              <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-                <div className="bg-white border border-[#213d77] rounded-xs max-w-md w-full p-5 space-y-4 shadow-xl">
+              <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+                <div className="bg-white border border-[#213d77] rounded-xs max-w-md w-full max-h-[90vh] overflow-y-auto p-4 sm:p-5 space-y-4 shadow-xl">
                   <div className="flex items-center justify-between border-b pb-2">
                     <span className="font-bold text-xs uppercase text-[#dc2626]">Escalate Incident #{escalateSosId} to Authority</span>
                     <button onClick={() => setEscalateSosId(null)} className="text-slate-400 hover:text-black">&times;</button>
@@ -1091,8 +1091,8 @@ export default function SupervisorDashboard() {
 
             {/* Detailed Field Report Modal */}
             {selectedFieldReport && (
-              <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
-                <div className="bg-white border border-[#213d77] rounded-xs max-w-lg w-full p-5 space-y-4 shadow-2xl animate-in fade-in duration-200">
+              <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+                <div className="bg-white border border-[#213d77] rounded-xs max-w-lg w-full max-h-[90vh] overflow-y-auto p-4 sm:p-5 space-y-4 shadow-2xl animate-in fade-in duration-200">
                   <div className="flex items-center justify-between border-b pb-2">
                     <div className="flex items-center gap-2">
                       <span className="font-bold text-xs uppercase text-[#0f2942]">
@@ -1253,8 +1253,8 @@ export default function SupervisorDashboard() {
 
             {/* Close Field Report Modal */}
             {closeReportId && (
-              <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-                <div className="bg-white border border-[#213d77] rounded-xs max-w-md w-full p-5 space-y-4 shadow-xl">
+              <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+                <div className="bg-white border border-[#213d77] rounded-xs max-w-md w-full max-h-[90vh] overflow-y-auto p-4 sm:p-5 space-y-4 shadow-xl">
                   <div className="flex items-center justify-between border-b pb-2">
                     <span className="font-bold text-xs uppercase text-[#0f2942]">Close Field Report #{closeReportId}</span>
                     <button onClick={() => setCloseReportId(null)} className="text-slate-400 hover:text-black">&times;</button>

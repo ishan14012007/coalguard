@@ -107,18 +107,18 @@ export default function FloatingAssistant() {
       ];
 
   return (
-    <div className="fixed bottom-5 right-5 z-40">
+    <div className="fixed bottom-3 right-3 sm:bottom-5 sm:right-5 z-40">
       {!isOpen ? (
         <button
           onClick={() => setIsOpen(true)}
-          className="group relative flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#1F6B45] hover:bg-[#17512F] text-white font-bold text-xs shadow-lg transition-all duration-300 border border-[#1F6B45]/40"
+          className="group relative flex items-center gap-2 sm:gap-2.5 px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-full bg-[#1F6B45] hover:bg-[#17512F] text-white font-bold text-[11px] sm:text-xs shadow-lg transition-all duration-300 border border-[#1F6B45]/40 cursor-pointer"
         >
-          <Bot className="w-5 h-5 animate-bounce" />
-          <span>{t('askAiAssistant')}</span>
+          <Bot className="w-4 h-4 sm:w-5 sm:h-5 animate-bounce" />
+          <span className="truncate max-w-[150px] sm:max-w-none">{t('askAiAssistant')}</span>
           <span className="w-2.5 h-2.5 rounded-full bg-[#B8860B] animate-ping absolute -top-1 -right-1" />
         </button>
       ) : (
-        <div className="w-80 sm:w-96 h-[490px] bg-[#FFFFFF] border border-[#DDD6C7] rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-6">
+        <div className="w-[calc(100vw-24px)] sm:w-96 max-w-sm h-[480px] max-h-[calc(100vh-80px)] bg-[#FFFFFF] border border-[#DDD6C7] rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-6">
           
           {/* Header */}
           <div className="bg-[#1F6B45] p-3.5 flex items-center justify-between text-white">

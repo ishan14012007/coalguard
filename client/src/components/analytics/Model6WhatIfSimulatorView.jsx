@@ -30,13 +30,13 @@ import {
 export default function Model6WhatIfSimulatorView({ token }) {
   // Simulator Input Parameters
   const [params, setParams] = useState({
-    rainfall_anomaly_mm: 120, // 0 to 300 mm
-    experience_ratio_pct: 65, // % >5 yrs
-    gas_ppm: 420, // 0 to 1200 PPM
-    shift: 'Night Shift (2200-0600)',
-    equipment: 'Continuous miner',
-    activity: 'Continuous Miner Operations',
-    monsoon_factor: 1.2
+    rainfall_anomaly_mm: 0, // 0 to 300 mm
+    experience_ratio_pct: 70, // % >5 yrs
+    gas_ppm: 100, // 0 to 1200 PPM
+    shift: 'Morning Shift (0600-1400)',
+    equipment: 'Belt conveyor',
+    activity: 'Handling supplies or material',
+    monsoon_factor: 1.0
   });
 
   const [simulating, setSimulating] = useState(false);

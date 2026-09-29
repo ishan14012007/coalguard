@@ -60,8 +60,8 @@ export default function OCRScanModal({ isOpen, onClose, onTextExtracted }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-[#1E1B16]/50 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
-      <div className="relative w-full max-w-2xl bg-[#FFFFFF] border border-[#DDD6C7] rounded-3xl shadow-xl p-6 overflow-hidden">
+    <div className="fixed inset-0 z-50 bg-[#1E1B16]/50 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+      <div className="relative w-full max-w-2xl bg-[#FFFFFF] border border-[#DDD6C7] rounded-3xl shadow-xl p-4 sm:p-6 max-h-[90vh] overflow-y-auto">
         
         {/* Header */}
         <div className="flex items-center justify-between pb-4 border-b border-[#DDD6C7]">

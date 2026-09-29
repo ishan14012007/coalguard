@@ -771,7 +771,7 @@ export default function AuthorityDashboard() {
       />
 
       {/* Authority Control Ribbon with Mine Scope Selector */}
-      <div className="bg-[#FFFFFF] border-b border-[#DDD6C7] px-4 lg:px-6 py-2.5 flex flex-wrap items-center justify-between gap-3 shadow-2xs">
+      <div className="bg-[#FFFFFF] border-b border-[#DDD6C7] px-3 sm:px-4 lg:px-6 py-2.5 flex flex-wrap items-center justify-between gap-3 shadow-2xs">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2">
             <span className="text-xs font-bold text-[#6B6558] uppercase font-mono">Scope:</span>
@@ -832,7 +832,7 @@ export default function AuthorityDashboard() {
       )}
 
       {/* Main Authority Workspace Content */}
-      <main className="flex-1 overflow-y-auto p-4 lg:p-8 space-y-6 w-full max-w-[1600px] mx-auto">
+      <main className="flex-1 overflow-y-auto p-3 sm:p-4 lg:p-8 space-y-4 sm:space-y-6 w-full max-w-[1600px] mx-auto">
 
           {/* ========================================================= */}
           {/* SECTION 1: OVERVIEW & HIGH-LEVEL SUMMARY */}
@@ -1286,53 +1286,55 @@ export default function AuthorityDashboard() {
               {/* INSPECTIONS TAB CONTENT */}
               {violationsSubTab === 'inspections' && (
                 <div className="bg-[#FFFFFF] rounded-2xl border border-[#DDD6C7] overflow-hidden shadow-2xs">
-                  <table className="w-full text-xs text-left">
-                    <thead className="bg-[#F7F5F0] border-b border-[#DDD6C7] font-mono text-[#6B6558] uppercase text-[10px]">
-                      <tr>
-                        <th className="py-3 px-4">Inspection Type</th>
-                        <th className="py-3 px-4">Mine Location</th>
-                        <th className="py-3 px-4">Scheduled Date</th>
-                        <th className="py-3 px-4">Inspector & Scope</th>
-                        <th className="py-3 px-4">Status</th>
-                        <th className="py-3 px-4 text-right">Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-[#DDD6C7]/60">
-                      {inspections.map((ins) => (
-                        <tr key={ins.id} className="hover:bg-[#F7F5F0]/50 transition">
-                          <td className="py-3.5 px-4 font-bold text-[#1E1B16]">{ins.inspection_type?.replace('_', ' ').toUpperCase()}</td>
-                          <td className="py-3.5 px-4">{ins.mine_name}</td>
-                          <td className="py-3.5 px-4 font-mono text-[#6B6558]">
-                            {new Date(ins.scheduled_date).toLocaleDateString()}
-                          </td>
-                          <td className="py-3.5 px-4 max-w-xs">
-                            <div className="font-semibold text-[#1E1B16]">{ins.inspector_name || 'DGMS Designated Official'}</div>
-                            <p className="text-[11px] text-[#6B6558] line-clamp-1">{ins.notes}</p>
-                          </td>
-                          <td className="py-3.5 px-4">
-                            <span className="px-2.5 py-1 rounded-full text-[11px] font-bold font-mono bg-[#E4EAF0] text-[#1B3A5C]">
-                              {ins.status?.toUpperCase() || 'SCHEDULED'}
-                            </span>
-                          </td>
-                          <td className="py-3.5 px-4 text-right">
-                            <button
-                              onClick={async () => {
-                                await fetch(`/api/inspections/${ins.id}`, {
-                                  method: 'PATCH',
-                                  headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-                                  body: JSON.stringify({ status: 'completed', findings_summary: 'Passed statutory inspection checklist.' })
-                                });
-                                fetchAuthorityData();
-                              }}
-                              className="px-2.5 py-1 rounded-lg bg-[#E3EFE8] hover:bg-[#1F6B45] hover:text-white text-[#1F6B45] text-xs font-semibold transition"
-                            >
-                              Complete Checklist
-                            </button>
-                          </td>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-xs text-left">
+                      <thead className="bg-[#F7F5F0] border-b border-[#DDD6C7] font-mono text-[#6B6558] uppercase text-[10px]">
+                        <tr>
+                          <th className="py-3 px-4">Inspection Type</th>
+                          <th className="py-3 px-4">Mine Location</th>
+                          <th className="py-3 px-4">Scheduled Date</th>
+                          <th className="py-3 px-4">Inspector & Scope</th>
+                          <th className="py-3 px-4">Status</th>
+                          <th className="py-3 px-4 text-right">Actions</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody className="divide-y divide-[#DDD6C7]/60">
+                        {inspections.map((ins) => (
+                          <tr key={ins.id} className="hover:bg-[#F7F5F0]/50 transition">
+                            <td className="py-3.5 px-4 font-bold text-[#1E1B16]">{ins.inspection_type?.replace('_', ' ').toUpperCase()}</td>
+                            <td className="py-3.5 px-4">{ins.mine_name}</td>
+                            <td className="py-3.5 px-4 font-mono text-[#6B6558]">
+                              {new Date(ins.scheduled_date).toLocaleDateString()}
+                            </td>
+                            <td className="py-3.5 px-4 max-w-xs">
+                              <div className="font-semibold text-[#1E1B16]">{ins.inspector_name || 'DGMS Designated Official'}</div>
+                              <p className="text-[11px] text-[#6B6558] line-clamp-1">{ins.notes}</p>
+                            </td>
+                            <td className="py-3.5 px-4">
+                              <span className="px-2.5 py-1 rounded-full text-[11px] font-bold font-mono bg-[#E4EAF0] text-[#1B3A5C]">
+                                {ins.status?.toUpperCase() || 'SCHEDULED'}
+                              </span>
+                            </td>
+                            <td className="py-3.5 px-4 text-right">
+                              <button
+                                onClick={async () => {
+                                  await fetch(`/api/inspections/${ins.id}`, {
+                                    method: 'PATCH',
+                                    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+                                    body: JSON.stringify({ status: 'completed', findings_summary: 'Passed statutory inspection checklist.' })
+                                  });
+                                  fetchAuthorityData();
+                                }}
+                                className="px-2.5 py-1 rounded-lg bg-[#E3EFE8] hover:bg-[#1F6B45] hover:text-white text-[#1F6B45] text-xs font-semibold transition"
+                              >
+                                Complete Checklist
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               )}
 
@@ -1433,37 +1435,39 @@ export default function AuthorityDashboard() {
                   </div>
 
                   <div className="bg-[#FFFFFF] rounded-2xl border border-[#DDD6C7] overflow-hidden shadow-2xs">
-                    <table className="w-full text-xs text-left">
-                      <thead className="bg-[#F7F5F0] border-b border-[#DDD6C7] font-mono text-[#6B6558] uppercase text-[10px]">
-                        <tr>
-                          <th className="py-3 px-4">Worker ID & Name</th>
-                          <th className="py-3 px-4">Mine & Location</th>
-                          <th className="py-3 px-4">Shift</th>
-                          <th className="py-3 px-4">Biometric Timestamp</th>
-                          <th className="py-3 px-4">Status</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-[#DDD6C7]/60">
-                        {(attendanceData?.records || []).slice(0, 10).map((att, i) => (
-                          <tr key={att.id || i} className="hover:bg-[#F7F5F0]/50 transition font-mono">
-                            <td className="py-3 px-4 font-bold text-[#1E1B16] font-sans">
-                              {att.worker_name}
-                              <div className="text-[10px] text-[#6B6558] font-mono">{att.worker_id}</div>
-                            </td>
-                            <td className="py-3 px-4 font-sans">{att.mine_name}</td>
-                            <td className="py-3 px-4 uppercase text-[#1B3A5C] font-bold">{att.shift}</td>
-                            <td className="py-3 px-4 text-[#6B6558] text-[11px]">
-                              {att.biometric_timestamp ? new Date(att.biometric_timestamp).toLocaleTimeString() : '06:45:12 AM'}
-                            </td>
-                            <td className="py-3 px-4">
-                              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#E3EFE8] text-[#1F6B45]">
-                                PRESENT (VERIFIED)
-                              </span>
-                            </td>
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-xs text-left">
+                        <thead className="bg-[#F7F5F0] border-b border-[#DDD6C7] font-mono text-[#6B6558] uppercase text-[10px]">
+                          <tr>
+                            <th className="py-3 px-4">Worker ID & Name</th>
+                            <th className="py-3 px-4">Mine & Location</th>
+                            <th className="py-3 px-4">Shift</th>
+                            <th className="py-3 px-4">Biometric Timestamp</th>
+                            <th className="py-3 px-4">Status</th>
                           </tr>
-                        ))}
-                      </tbody>
-                    </table>
+                        </thead>
+                        <tbody className="divide-y divide-[#DDD6C7]/60">
+                          {(attendanceData?.records || []).slice(0, 10).map((att, i) => (
+                            <tr key={att.id || i} className="hover:bg-[#F7F5F0]/50 transition font-mono">
+                              <td className="py-3 px-4 font-bold text-[#1E1B16] font-sans">
+                                {att.worker_name}
+                                <div className="text-[10px] text-[#6B6558] font-mono">{att.worker_id}</div>
+                              </td>
+                              <td className="py-3 px-4 font-sans">{att.mine_name}</td>
+                              <td className="py-3 px-4 uppercase text-[#1B3A5C] font-bold">{att.shift}</td>
+                              <td className="py-3 px-4 text-[#6B6558] text-[11px]">
+                                {att.biometric_timestamp ? new Date(att.biometric_timestamp).toLocaleTimeString() : '06:45:12 AM'}
+                              </td>
+                              <td className="py-3 px-4">
+                                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#E3EFE8] text-[#1F6B45]">
+                                  PRESENT (VERIFIED)
+                                </span>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               )}
@@ -1822,39 +1826,41 @@ export default function AuthorityDashboard() {
 
               {/* Hash Chain Logs Table */}
               <div className="bg-[#FFFFFF] rounded-2xl border border-[#DDD6C7] overflow-hidden shadow-2xs">
-                <table className="w-full text-xs text-left">
-                  <thead className="bg-[#F7F5F0] border-b border-[#DDD6C7] font-mono text-[#6B6558] uppercase text-[10px]">
-                    <tr>
-                      <th className="py-3 px-4">Block #</th>
-                      <th className="py-3 px-4">Timestamp</th>
-                      <th className="py-3 px-4">Action & Entity</th>
-                      <th className="py-3 px-4">Actor</th>
-                      <th className="py-3 px-4">Cryptographic Hash (SHA-256)</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-[#DDD6C7]/60 font-mono">
-                    {auditLogs
-                      .filter(log => !searchAuditHash || JSON.stringify(log).toLowerCase().includes(searchAuditHash.toLowerCase()))
-                      .map((log, idx) => (
-                        <tr key={log.id || idx} className="hover:bg-[#F7F5F0]/50 transition">
-                          <td className="py-3 px-4 font-bold text-[#1B3A5C]">#{log.block_number || idx + 1}</td>
-                          <td className="py-3 px-4 text-[#6B6558] text-[11px]">
-                            {new Date(log.timestamp).toLocaleString()}
-                          </td>
-                          <td className="py-3 px-4">
-                            <span className="font-bold text-[#1E1B16] font-sans">{log.action}</span>
-                            <div className="text-[10px] text-[#6B6558]">{log.entity_type} ({log.entity_id})</div>
-                          </td>
-                          <td className="py-3 px-4 font-sans text-[#1E1B16]">{log.actor_name || 'System Statutory Engine'}</td>
-                          <td className="py-3 px-4">
-                            <span className="text-[10px] text-[#1F6B45] font-bold truncate max-w-[200px] inline-block" title={log.current_hash}>
-                              {log.current_hash ? `${log.current_hash.substring(0, 16)}...` : 'GENESIS_HASH'}
-                            </span>
-                          </td>
-                        </tr>
-                      ))}
-                  </tbody>
-                </table>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-xs text-left">
+                    <thead className="bg-[#F7F5F0] border-b border-[#DDD6C7] font-mono text-[#6B6558] uppercase text-[10px]">
+                      <tr>
+                        <th className="py-3 px-4">Block #</th>
+                        <th className="py-3 px-4">Timestamp</th>
+                        <th className="py-3 px-4">Action & Entity</th>
+                        <th className="py-3 px-4">Actor</th>
+                        <th className="py-3 px-4">Cryptographic Hash (SHA-256)</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-[#DDD6C7]/60 font-mono">
+                      {auditLogs
+                        .filter(log => !searchAuditHash || JSON.stringify(log).toLowerCase().includes(searchAuditHash.toLowerCase()))
+                        .map((log, idx) => (
+                          <tr key={log.id || idx} className="hover:bg-[#F7F5F0]/50 transition">
+                            <td className="py-3 px-4 font-bold text-[#1B3A5C]">#{log.block_number || idx + 1}</td>
+                            <td className="py-3 px-4 text-[#6B6558] text-[11px]">
+                              {new Date(log.timestamp).toLocaleString()}
+                            </td>
+                            <td className="py-3 px-4">
+                              <span className="font-bold text-[#1E1B16] font-sans">{log.action}</span>
+                              <div className="text-[10px] text-[#6B6558]">{log.entity_type} ({log.entity_id})</div>
+                            </td>
+                            <td className="py-3 px-4 font-sans text-[#1E1B16]">{log.actor_name || 'System Statutory Engine'}</td>
+                            <td className="py-3 px-4">
+                              <span className="text-[10px] text-[#1F6B45] font-bold truncate max-w-[200px] inline-block" title={log.current_hash}>
+                                {log.current_hash ? `${log.current_hash.substring(0, 16)}...` : 'GENESIS_HASH'}
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
 
             </div>
@@ -1939,74 +1945,76 @@ export default function AuthorityDashboard() {
               {/* GRIEVANCES SUB-TAB */}
               {reportsSubTab === 'grievances' && (
                 <div className="bg-[#FFFFFF] rounded-2xl border border-[#DDD6C7] overflow-hidden shadow-2xs">
-                  <table className="w-full text-xs text-left">
-                    <thead className="bg-[#F7F5F0] border-b border-[#DDD6C7] font-mono text-[#6B6558] uppercase text-[10px]">
-                      <tr>
-                        <th className="py-3 px-4">Ticket</th>
-                        <th className="py-3 px-4">Subject & Description</th>
-                        <th className="py-3 px-4">Worker & Mine</th>
-                        <th className="py-3 px-4">SLA Countdown</th>
-                        <th className="py-3 px-4">Status</th>
-                        <th className="py-3 px-4 text-right">Authority Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-[#DDD6C7]/60">
-                      {grievances.map((g) => (
-                        <tr key={g.id} className="hover:bg-[#F7F5F0]/50 transition">
-                          <td className="py-3 px-4 font-bold font-mono text-[#1B3A5C]">{g.ticket_number || g.id}</td>
-                          <td className="py-3 px-4 max-w-sm">
-                            <div className="font-bold text-[#1E1B16]">{g.subject}</div>
-                            <p className="text-[11px] text-[#6B6558] line-clamp-1">{g.description}</p>
-                            {g.resolution_notes && (
-                              <p className="text-[10px] text-[#1F6B45] mt-0.5">Note: {g.resolution_notes}</p>
-                            )}
-                          </td>
-                          <td className="py-3 px-4 font-medium text-[#1E1B16]">
-                            {g.worker_name || 'Miner'}
-                            <div className="text-[10px] text-[#6B6558] font-mono">Mine: Jharia Seam 4</div>
-                          </td>
-                          <td className="py-3 px-4 font-mono text-xs">
-                            {g.status === 'resolved' ? (
-                              <span className="text-[#1F6B45] font-bold">Resolved within SLA</span>
-                            ) : (
-                              <span className={g.is_sla_breached ? 'text-[#A13D2F] font-bold' : 'text-[#B8860B] font-bold'}>
-                                {g.remaining_sla_hours} hrs left
-                              </span>
-                            )}
-                          </td>
-                          <td className="py-3 px-4">
-                            <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold font-mono ${
-                              g.status === 'resolved' ? 'bg-[#E3EFE8] text-[#1F6B45]' :
-                              g.status === 'in_review' ? 'bg-[#E4EAF0] text-[#1B3A5C]' :
-                              'bg-[#F5EDD6] text-[#3A2E00]'
-                            }`}>
-                              {g.status?.replace('_', ' ').toUpperCase()}
-                            </span>
-                          </td>
-                          <td className="py-3 px-4 text-right">
-                            <div className="flex items-center justify-end gap-1.5">
-                              {g.status === 'open' && (
-                                <button
-                                  onClick={() => handleUpdateGrievanceStatus(g.id, 'in_review', 'Welfare Officer initiated inquiry.')}
-                                  className="px-2 py-1 rounded-lg bg-[#E4EAF0] text-[#1B3A5C] text-[11px] font-bold transition hover:bg-[#1B3A5C] hover:text-white"
-                                >
-                                  In Review
-                                </button>
-                              )}
-                              {g.status !== 'resolved' && (
-                                <button
-                                  onClick={() => handleUpdateGrievanceStatus(g.id, 'resolved', 'Reviewed and resolved by Mine Safety Authority.')}
-                                  className="px-2.5 py-1 rounded-lg bg-[#1F6B45] text-white text-[11px] font-bold transition hover:bg-[#17512F]"
-                                >
-                                  Resolve
-                                </button>
-                              )}
-                            </div>
-                          </td>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-xs text-left">
+                      <thead className="bg-[#F7F5F0] border-b border-[#DDD6C7] font-mono text-[#6B6558] uppercase text-[10px]">
+                        <tr>
+                          <th className="py-3 px-4">Ticket</th>
+                          <th className="py-3 px-4">Subject & Description</th>
+                          <th className="py-3 px-4">Worker & Mine</th>
+                          <th className="py-3 px-4">SLA Countdown</th>
+                          <th className="py-3 px-4">Status</th>
+                          <th className="py-3 px-4 text-right">Authority Actions</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody className="divide-y divide-[#DDD6C7]/60">
+                        {grievances.map((g) => (
+                          <tr key={g.id} className="hover:bg-[#F7F5F0]/50 transition">
+                            <td className="py-3 px-4 font-bold font-mono text-[#1B3A5C]">{g.ticket_number || g.id}</td>
+                            <td className="py-3 px-4 max-w-sm">
+                              <div className="font-bold text-[#1E1B16]">{g.subject}</div>
+                              <p className="text-[11px] text-[#6B6558] line-clamp-1">{g.description}</p>
+                              {g.resolution_notes && (
+                                <p className="text-[10px] text-[#1F6B45] mt-0.5">Note: {g.resolution_notes}</p>
+                              )}
+                            </td>
+                            <td className="py-3 px-4 font-medium text-[#1E1B16]">
+                              {g.worker_name || 'Miner'}
+                              <div className="text-[10px] text-[#6B6558] font-mono">Mine: Jharia Seam 4</div>
+                            </td>
+                            <td className="py-3 px-4 font-mono text-xs">
+                              {g.status === 'resolved' ? (
+                                <span className="text-[#1F6B45] font-bold">Resolved within SLA</span>
+                              ) : (
+                                <span className={g.is_sla_breached ? 'text-[#A13D2F] font-bold' : 'text-[#B8860B] font-bold'}>
+                                  {g.remaining_sla_hours} hrs left
+                                </span>
+                              )}
+                            </td>
+                            <td className="py-3 px-4">
+                              <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold font-mono ${
+                                g.status === 'resolved' ? 'bg-[#E3EFE8] text-[#1F6B45]' :
+                                g.status === 'in_review' ? 'bg-[#E4EAF0] text-[#1B3A5C]' :
+                                'bg-[#F5EDD6] text-[#3A2E00]'
+                              }`}>
+                                {g.status?.replace('_', ' ').toUpperCase()}
+                              </span>
+                            </td>
+                            <td className="py-3 px-4 text-right">
+                              <div className="flex items-center justify-end gap-1.5">
+                                {g.status === 'open' && (
+                                  <button
+                                    onClick={() => handleUpdateGrievanceStatus(g.id, 'in_review', 'Welfare Officer initiated inquiry.')}
+                                    className="px-2 py-1 rounded-lg bg-[#E4EAF0] text-[#1B3A5C] text-[11px] font-bold transition hover:bg-[#1B3A5C] hover:text-white"
+                                  >
+                                    In Review
+                                  </button>
+                                )}
+                                {g.status !== 'resolved' && (
+                                  <button
+                                    onClick={() => handleUpdateGrievanceStatus(g.id, 'resolved', 'Reviewed and resolved by Mine Safety Authority.')}
+                                    className="px-2.5 py-1 rounded-lg bg-[#1F6B45] text-white text-[11px] font-bold transition hover:bg-[#17512F]"
+                                  >
+                                    Resolve
+                                  </button>
+                                )}
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               )}
 
@@ -2274,8 +2282,8 @@ export default function AuthorityDashboard() {
 
       {/* 3. Create Statutory Compliance Item Modal */}
       {isCreateItemOpen && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-          <div className="bg-[#FFFFFF] border border-[#DDD6C7] rounded-2xl max-w-md w-full p-6 shadow-xl space-y-4">
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+          <div className="bg-[#FFFFFF] border border-[#DDD6C7] rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto p-4 sm:p-6 shadow-xl space-y-4">
             <h3 className="text-base font-bold text-[#1E1B16] font-heading">Add Statutory Compliance Item</h3>
             <form onSubmit={handleCreateComplianceItem} className="space-y-3 text-xs">
               <div>
@@ -2345,8 +2353,8 @@ export default function AuthorityDashboard() {
 
       {/* 4. Create Violation Modal */}
       {isCreateViolationOpen && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-          <div className="bg-[#FFFFFF] border border-[#DDD6C7] rounded-2xl max-w-md w-full p-6 shadow-xl space-y-4">
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+          <div className="bg-[#FFFFFF] border border-[#DDD6C7] rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto p-4 sm:p-6 shadow-xl space-y-4">
             <h3 className="text-base font-bold text-[#1E1B16] font-heading">Log Safety Violation</h3>
             <form onSubmit={handleCreateViolation} className="space-y-3 text-xs">
               <div>
@@ -2417,8 +2425,8 @@ export default function AuthorityDashboard() {
 
       {/* 5. Schedule Inspection Modal */}
       {isCreateInspectionOpen && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-          <div className="bg-[#FFFFFF] border border-[#DDD6C7] rounded-2xl max-w-md w-full p-6 shadow-xl space-y-4">
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+          <div className="bg-[#FFFFFF] border border-[#DDD6C7] rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto p-4 sm:p-6 shadow-xl space-y-4">
             <h3 className="text-base font-bold text-[#1E1B16] font-heading">Schedule Statutory Inspection</h3>
             <form onSubmit={handleScheduleInspection} className="space-y-3 text-xs">
               <div>
@@ -2476,8 +2484,8 @@ export default function AuthorityDashboard() {
 
       {/* 6. Onboard Contractor Modal */}
       {isOnboardContractorOpen && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-          <div className="bg-[#FFFFFF] border border-[#DDD6C7] rounded-2xl max-w-md w-full p-6 shadow-xl space-y-4">
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+          <div className="bg-[#FFFFFF] border border-[#DDD6C7] rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto p-4 sm:p-6 shadow-xl space-y-4">
             <h3 className="text-base font-bold text-[#1E1B16] font-heading">Onboard Contractor Agency</h3>
             <form onSubmit={handleOnboardContractor} className="space-y-3 text-xs">
               <div>

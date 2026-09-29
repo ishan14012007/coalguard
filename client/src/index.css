@@ -193,6 +193,21 @@
 }
 
 /* Government Table Styling */
+.gov-table-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 .gov-table {
   width: 100%;
   border-collapse: collapse;
