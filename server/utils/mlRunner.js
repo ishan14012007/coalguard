@@ -106,76 +106,30 @@ export async function classifyHazardReport(text) {
   }
 }
 
+import {
+  getModel4Options as engineGetModel4Options,
+  predictSituationalRisk as enginePredictSituationalRisk,
+  simulateWhatIfRisk as engineSimulateWhatIfRisk
+} from './riskEngine.js';
+
 /**
- * Get Model 4 categorical options for UI dropdowns
+ * Get Model 4 categorical options for UI dropdowns (In-Process Node Engine)
  */
 export async function getModel4Options() {
-  try {
-    return await executeMLBridge('risk_options');
-  } catch (err) {
-    console.warn('⚠️ Model 4 Options fallback:', err.message);
-    return {
-      options: {
-        AI_ACTY_DESC: ['Continuous miner', 'Accident recovery', 'Advance roof support-longwall', 'Haulage / Dumper operation', 'Drilling & Blasting'],
-        MINING_EQUIP: ['Continuous miner', 'Belt conveyor', 'Haul truck / Dumper', 'Shuttle car', 'Roof bolter'],
-        UG_LOCATION: ['FACE', 'INTERSECTION', 'LAST OPEN CROSSCUT', 'HAULAGE ROAD'],
-        COAL_METAL_IND: ['C', 'M'],
-        EXPER_TOT_CALC: ['<1 Year', '1-5 Years', '5-10 Years', '>10 Years'],
-        ACCIDENT_TIME: ['Morning Shift (0600-1400)', 'Afternoon Shift (1400-2200)', 'Night Shift (2200-0600)'],
-        UG_MINING_METHOD: ['Continuous Mining', 'Conventional Stoping', 'Longwall', 'Caving'],
-        AI_CLASS_DESC: ['FALL OF FACE/RIB/PILLAR/HIGHWALL', 'IGNITION/EXPLOSION OF GAS', 'ELECTRICAL', 'FIRE/HEAT']
-      },
-      baseline_risk: 48.35
-    };
-  }
+  return engineGetModel4Options();
 }
 
 /**
- * Predict situational risk probability using Model 4
+ * Predict situational risk probability using Model 4 (In-Process Node Engine)
  */
 export async function predictSituationalRisk(inputs) {
-  try {
-    return await executeMLBridge('predict_risk', inputs);
-  } catch (err) {
-    console.warn('⚠️ Model 4 Predict fallback:', err.message);
-    return {
-      baseline_risk_pct: 48.4,
-      predicted_risk_pct: 62.8,
-      delta_pct: 14.4,
-      risk_level: 'HIGH RISK',
-      risk_color: 'orange',
-      explanation: 'ELEVATED RISK: Situational inputs indicate higher risk than average due to activity and shift timing.',
-      inputs
-    };
-  }
+  return enginePredictSituationalRisk(inputs);
 }
 
 /**
- * Run Model 6 What-If Risk Simulator
+ * Run Model 6 What-If Risk Simulator (In-Process Node Engine)
  */
 export async function simulateWhatIfRisk(params) {
-  try {
-    return await executeMLBridge('simulate_whatif', params);
-  } catch (err) {
-    console.warn('⚠️ Model 6 Simulator fallback:', err.message);
-    return {
-      simulated_risk_score: 58.2,
-      baseline_risk: 48.4,
-      risk_delta: 9.8,
-      risk_level: 'HIGH',
-      rainfall_impact_pts: 6.5,
-      experience_impact_pts: 3.3,
-      gas_impact_pts: 0.0,
-      mitigation_recommendations: [
-        'Deploy auxiliary sump pumping units (DGMS Reg 148)',
-        'Pair novice miners with Level-III certified sirdars'
-      ],
-      trajectory: [
-        { hour: 'T-0h (Current)', score: 48.4 },
-        { hour: 'T+2h (Projected)', score: 53.0 },
-        { hour: 'T+4h (Peak Load)', score: 58.2 },
-        { hour: 'T+6h (Post-Mitigation)', score: 32.0 }
-      ]
-    };
-  }
+  return engineSimulateWhatIfRisk(params);
 }
+
