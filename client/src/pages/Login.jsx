@@ -207,14 +207,15 @@ export default function Login() {
                 <form onSubmit={handleSubmit} className="space-y-3.5">
                   <div>
                     <label className="gov-label">GOVERNMENT EMAIL / EMPLOYEE ID</label>
-                    <div className="relative">
-                      <Mail className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+                    <div className="relative flex items-center">
+                      <Mail className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
                       <input
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="officer@coalguard.gov.in"
-                        className="gov-input pl-9"
+                        className="gov-input !pl-10"
+                        style={{ paddingLeft: '2.5rem' }}
                         required
                       />
                     </div>
@@ -222,14 +223,15 @@ export default function Login() {
 
                   <div>
                     <label className="gov-label">PASSWORD / PIN</label>
-                    <div className="relative">
-                      <Lock className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+                    <div className="relative flex items-center">
+                      <Lock className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
                       <input
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="••••••••"
-                        className="gov-input pl-9"
+                        className="gov-input !pl-10"
+                        style={{ paddingLeft: '2.5rem' }}
                         required
                       />
                     </div>
