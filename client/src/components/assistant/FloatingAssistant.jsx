@@ -2,6 +2,21 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { Bot, Mic, MicOff, Send, Sparkles, X } from 'lucide-react';
 
+// Format markdown-like bold indicators without displaying raw asterisks
+function renderFormattedText(text) {
+  if (!text) return null;
+  const parts = text.split(/(\*\*.*?\*\*|\*.*?\*)/g);
+  return parts.map((part, i) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return <strong key={i} className="font-bold">{part.slice(2, -2)}</strong>;
+    }
+    if (part.startsWith('*') && part.endsWith('*')) {
+      return <strong key={i} className="font-bold">{part.slice(1, -1)}</strong>;
+    }
+    return part;
+  });
+}
+
 export default function FloatingAssistant() {
   const { user, token, lang, t } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
@@ -107,15 +122,17 @@ export default function FloatingAssistant() {
       ];
 
   return (
-    <div className="fixed bottom-3 right-3 sm:bottom-5 sm:right-5 z-40">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40">
       {!isOpen ? (
         <button
           onClick={() => setIsOpen(true)}
-          className="group relative flex items-center gap-2 sm:gap-2.5 px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-full bg-[#1F6B45] hover:bg-[#17512F] text-white font-bold text-[11px] sm:text-xs shadow-lg transition-all duration-300 border border-[#1F6B45]/40 cursor-pointer"
+          className="group relative flex items-center justify-center w-14 h-14 rounded-full bg-[#1F6B45] hover:bg-[#17512F] text-white shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-white/20 hover:scale-105 cursor-pointer"
+          title={t('askAiAssistant') || 'Ask CoalGuard AI Assistant'}
+          aria-label="Ask CoalGuard AI Assistant"
         >
-          <Bot className="w-4 h-4 sm:w-5 sm:h-5 animate-bounce" />
-          <span className="truncate max-w-[150px] sm:max-w-none">{t('askAiAssistant')}</span>
-          <span className="w-2.5 h-2.5 rounded-full bg-[#B8860B] animate-ping absolute -top-1 -right-1" />
+          <Bot className="w-6 h-6 animate-pulse" />
+          <span className="w-3 h-3 rounded-full bg-[#B8860B] border-2 border-white animate-ping absolute top-0 right-0" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#B8860B] absolute top-0.5 right-0.5" />
         </button>
       ) : (
         <div className="w-[calc(100vw-24px)] sm:w-96 max-w-sm h-[480px] max-h-[calc(100vh-80px)] bg-[#FFFFFF] border border-[#DDD6C7] rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-6">
@@ -136,7 +153,7 @@ export default function FloatingAssistant() {
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="p-1.5 text-white/80 hover:text-white rounded-lg hover:bg-white/10"
+              className="p-1.5 text-white/80 hover:text-white rounded-lg hover:bg-white/10 cursor-pointer"
             >
               <X className="w-4 h-4" />
             </button>
@@ -156,7 +173,7 @@ export default function FloatingAssistant() {
                       : 'bg-[#FFFFFF] text-[#1E1B16] border border-[#DDD6C7] shadow-xs'
                   }`}
                 >
-                  <p className="whitespace-pre-line">{m.text}</p>
+                  <p className="whitespace-pre-line">{renderFormattedText(m.text)}</p>
                   {m.suggestedNext && (
                     <button
                       onClick={() => handleSend(m.suggestedNext)}

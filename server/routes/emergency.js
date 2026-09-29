@@ -44,6 +44,21 @@ router.get('/sos', authenticateToken, (req, res) => {
 router.post('/sos', authenticateToken, (req, res) => {
   const { latitude, longitude, emergency_type, remarks } = req.body;
 
+  // 1. Idempotency Check: ONE ACTIVE SOS PER MINER
+  const existingActiveSOS = (mockStore.sos_events || []).find(
+    e => e.miner_id === req.user.id && (e.status === 'active' || e.status === 'acknowledged' || e.status === 'escalated')
+  );
+
+  if (existingActiveSOS) {
+    const mine = mockStore.mines.find(m => m.id === existingActiveSOS.mine_id) || mockStore.mines[0];
+    return res.status(200).json({
+      ...existingActiveSOS,
+      mine_name: mine?.name || 'Demo Mine A (Zone 1 - Zone 5)',
+      mine_code: mine?.code || 'DEMO-MINE-A',
+      already_active: true
+    });
+  }
+
   const targetMineId = req.user.mine_id || mockStore.mines[0].id;
   const mine = mockStore.mines.find(m => m.id === targetMineId) || mockStore.mines[0];
 

@@ -779,7 +779,7 @@ export default function AuthorityDashboard() {
               <select
                 value={selectedMineId}
                 onChange={(e) => setSelectedMineId(e.target.value)}
-                className="bg-[#EFEBE2] border border-[#DDD6C7] rounded-xl px-3 py-1.5 text-xs font-bold text-[#1E1B16] focus:outline-none focus:border-[#1B3A5C] pr-8 cursor-pointer font-heading"
+                className="appearance-none bg-[#EFEBE2] border border-[#DDD6C7] rounded-xl px-3 py-1.5 text-xs font-bold text-[#1E1B16] focus:outline-none focus:border-[#1B3A5C] pr-8 cursor-pointer font-heading"
               >
                 {availableMines.map((m) => (
                   <option key={m.id} value={m.id}>{m.name}</option>

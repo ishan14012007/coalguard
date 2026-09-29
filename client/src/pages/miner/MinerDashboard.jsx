@@ -141,7 +141,7 @@ export default function MinerDashboard() {
       const sosRes = await fetch('/api/emergency/sos', { headers });
       if (sosRes.ok) {
         const list = await sosRes.json();
-        const active = list.find(s => s.status === 'active' || s.status === 'acknowledged');
+        const active = list.find(s => s.status === 'active' || s.status === 'acknowledged' || s.status === 'escalated');
         setActiveSOSEvent(active || null);
       }
     } catch (err) {
@@ -266,6 +266,9 @@ export default function MinerDashboard() {
   };
 
   const triggerSOS = async () => {
+    if (sosLoading || (activeSOSEvent && activeSOSEvent.status !== 'resolved')) {
+      return;
+    }
     setSosLoading(true);
     let coords = { lat: 23.7508, lng: 86.4192 };
 
@@ -396,12 +399,14 @@ export default function MinerDashboard() {
               </div>
 
               <button
-                disabled={sosLoading}
+                disabled={sosLoading || (activeSOSEvent && activeSOSEvent.status !== 'resolved')}
                 onClick={triggerSOS}
-                className="btn-gov-danger py-2.5 px-5 text-xs shrink-0 whitespace-nowrap uppercase tracking-wider font-bold"
+                className={`btn-gov-danger py-2.5 px-5 text-xs shrink-0 whitespace-nowrap uppercase tracking-wider font-bold ${
+                  activeSOSEvent && activeSOSEvent.status !== 'resolved' ? 'opacity-70 cursor-not-allowed' : ''
+                }`}
               >
                 <PhoneCall className="w-4 h-4" />
-                <span>{activeSOSEvent ? 'SOS BROADCAST ACTIVE' : 'TRIGGER EMERGENCY SOS'}</span>
+                <span>{activeSOSEvent && activeSOSEvent.status !== 'resolved' ? 'SOS BROADCAST ACTIVE' : 'TRIGGER EMERGENCY SOS'}</span>
               </button>
             </div>
 
@@ -1097,12 +1102,14 @@ export default function MinerDashboard() {
                 )}
 
                 <button
-                  disabled={sosLoading}
+                  disabled={sosLoading || (activeSOSEvent && activeSOSEvent.status !== 'resolved')}
                   onClick={triggerSOS}
-                  className="btn-gov-danger w-full py-3 text-xs uppercase font-bold flex items-center justify-center gap-2"
+                  className={`btn-gov-danger w-full py-3 text-xs uppercase font-bold flex items-center justify-center gap-2 ${
+                    activeSOSEvent && activeSOSEvent.status !== 'resolved' ? 'opacity-70 cursor-not-allowed' : ''
+                  }`}
                 >
                   <PhoneCall className="w-4 h-4" />
-                  <span>{activeSOSEvent ? 'TRANSMIT REPEAT SOS BEACON' : 'TRIGGER LIFE-SAFETY SOS NOW'}</span>
+                  <span>{activeSOSEvent && activeSOSEvent.status !== 'resolved' ? 'EMERGENCY SOS ACTIVE (SUPERVISOR ALERTED)' : 'TRIGGER LIFE-SAFETY SOS NOW'}</span>
                 </button>
               </div>
 
