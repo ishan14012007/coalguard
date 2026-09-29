@@ -35,14 +35,15 @@ export function PitSlopeIcon({ className = "w-6 h-6", color = "#1F6B45" }) {
   );
 }
 
-// Colliery Safety Shield Logo with Primary Green & Gold Facet
+import coalguardLogo from '../../assets/logo-coalguard.jpeg';
+
+// Official CoalGuard Logo
 export function CoalGuardEmblem({ className = "w-8 h-8" }) {
   return (
-    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-      <path d="M16 2L4 7V15C4 22.5 9.1 29.2 16 31C22.9 29.2 28 22.5 28 15V7L16 2Z" fill="#1F6B45" stroke="#17512F" strokeWidth="1.5" strokeLinejoin="round"/>
-      <path d="M16 5L6.5 9V15C6.5 21 10.5 26.5 16 28C21.5 26.5 25.5 21 25.5 15V9L16 5Z" fill="#17512F" fillOpacity="0.8"/>
-      <path d="M16 9L12 15H20L16 9Z" fill="#F5EDD6" stroke="#B8860B" strokeWidth="0.8"/>
-      <path d="M12 15L16 23L20 15H12Z" fill="#B8860B"/>
-    </svg>
+    <img 
+      src={coalguardLogo} 
+      alt="CoalGuard Official Logo" 
+      className={`${className} object-contain rounded-xs`} 
+    />
   );
 }

@@ -134,8 +134,8 @@ export default function Login() {
       <header className="px-2 sm:px-4 lg:px-8 py-2.5 sm:py-3 bg-white border-b border-[#d1d5db] shadow-xs">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 sm:gap-4">
           <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
-            <div className="p-1.5 sm:p-2 bg-[#0f2942] text-white rounded-xs border border-[#091a2b] shrink-0">
-              <CoalGuardEmblem className="w-7 h-7 sm:w-9 sm:h-9 text-white" />
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-md overflow-hidden shrink-0 flex items-center justify-center border border-slate-200 bg-white shadow-2xs">
+              <CoalGuardEmblem className="w-full h-full object-contain" />
             </div>
             <div className="min-w-0">
               <h1 className="text-lg sm:text-xl lg:text-2xl font-black text-[#0f2942] tracking-tight uppercase truncate">

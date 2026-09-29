@@ -195,9 +195,9 @@ export default function GovHeader({ activeTab, onSelectTab, customNavItems, sect
       <div className="px-2 sm:px-4 lg:px-8 py-2.5 sm:py-3 bg-white flex flex-wrap items-center justify-between gap-2.5 sm:gap-4">
         
         {/* Logo & Portal Identity */}
-        <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-          <div className="p-1 sm:p-1.5 bg-[#0f2942] text-white rounded-xs border border-[#091a2b] shadow-xs shrink-0">
-            <CoalGuardEmblem className="w-7 h-7 sm:w-8 sm:h-8 text-white" />
+        <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-md overflow-hidden shrink-0 flex items-center justify-center border border-slate-200 bg-white shadow-2xs">
+            <CoalGuardEmblem className="w-full h-full object-contain" />
           </div>
           <div className="min-w-0">
             <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
