@@ -7,7 +7,6 @@ import {
   ArrowRight, 
   Lock, 
   Mail, 
-  Globe, 
   Sparkles,
   AlertCircle,
   Video,
@@ -20,7 +19,7 @@ import {
 } from 'lucide-react';
 
 export default function Login() {
-  const { loginWithCredentials, quickSwitchRole, lang, toggleLanguage, t } = useAuth();
+  const { loginWithCredentials, quickSwitchRole } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -128,16 +127,6 @@ export default function Login() {
               A+
             </button>
           </div>
-
-          <span className="text-slate-300">|</span>
-
-          <button
-            onClick={toggleLanguage}
-            className="font-bold text-[#0f2942] hover:text-[#fb792b] flex items-center gap-1 transition cursor-pointer"
-          >
-            <Globe className="w-3.5 h-3.5 text-[#fb792b]" />
-            <span>{lang === 'en' ? 'हिंदी' : 'English'}</span>
-          </button>
         </div>
       </div>
 

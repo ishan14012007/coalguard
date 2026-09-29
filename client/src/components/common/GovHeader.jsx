@@ -14,7 +14,6 @@ import {
   Activity, 
   Bell, 
   LogOut, 
-  Globe, 
   Layers, 
   Clock, 
   MessageSquare, 
@@ -32,7 +31,7 @@ import {
 import { CoalGuardEmblem, MiningHelmetIcon } from './MiningIcons';
 
 export default function GovHeader({ activeTab, onSelectTab, customNavItems, sectionNotifications = {}, onNavigateToMap }) {
-  const { user, logout, lang, toggleLanguage, notifications } = useAuth();
+  const { user, logout, notifications } = useAuth();
   const [currentDateTime, setCurrentDateTime] = useState('');
   const [fontSizeLevel, setFontSizeLevel] = useState('normal'); // 'small' | 'normal' | 'large'
   const [unreadCount, setUnreadCount] = useState(0);
@@ -189,17 +188,6 @@ export default function GovHeader({ activeTab, onSelectTab, customNavItems, sect
               A+
             </button>
           </div>
-
-          <span className="text-slate-300">|</span>
-
-          {/* Hindi / English Switch */}
-          <button
-            onClick={toggleLanguage}
-            className="font-bold text-[#0f2942] hover:text-[#fb792b] flex items-center gap-1 transition cursor-pointer"
-          >
-            <Globe className="w-3.5 h-3.5 text-[#fb792b]" />
-            <span>{lang === 'en' ? 'हिंदी' : 'English'}</span>
-          </button>
         </div>
       </div>
 
